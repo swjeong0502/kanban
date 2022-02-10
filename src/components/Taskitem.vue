@@ -1,58 +1,51 @@
 <template>
   <div>
     <li class="task-item">
-      <div class="task-item-header">
-        <div
-          class="task-priority"
-          :class="item.priority"
-          v-if="showTaskPriority"
-          @click="changePriority"
-        >{{item.priority}} Priority</div>
-        <v-select
-          v-model="item.priority"
-          ref="vueDropdown"
-          :options="['Low','Medium', 'High']"
-          v-if="showTaskPriorityDropdown"
-          @search:blur="setNewPriority"
-          :clearable="false"
-          :closeOnSelect="true"
-          class="custom-v-select"
-        ></v-select>
+       <div class="task-item-header">
+       
+        <div class="assigned-users">
+             홍길동(남) - 참여도높음
+          <div
+            class="task-priority"
+            :class="item.priority"
+            v-if="showTaskPriority"
+            @click="changePriority"
+          >Details</div>
+          <v-select
+            v-model="item.priority"
+            ref="vueDropdown"
+            :options="['Low','Medium', 'High','Detail']"
+            v-if="showTaskPriorityDropdown"
+            @search:blur="setNewPriority"
+            :clearable="false"
+            :closeOnSelect="true"
+            class="custom-v-select"
+          ></v-select>
+        </div>
+        <hr style="margin-top:15px; margin-bottom:15px">
+
       </div>
+      
       <div class="task-item-body">
-        <p class="task-title" @click="openTaskDetailPopoup(item)">{{this.item.text}}</p>
-        <!-- <textarea type="text" class="form-control task-title" :value="task.title" rows="2"></textarea> -->
+        <p class="task-title"  ><ion-icon name="person-outline" ></ion-icon> 1991-05-02 (만 30세)</p>
+        <p class="task-title" ><ion-icon name="call-outline"></ion-icon> 010-5448-1326 <ion-icon name="chatbox-outline" size="small"></ion-icon></p>
+        <p class="task-title" ><ion-icon name="calendar-outline" style="color:blue"></ion-icon> 2022-02-09(수) 18:00</p>
+               <!-- <textarea type="text" class="form-control task-title" :value="task.title" rows="2"></textarea> -->
       </div>
+     <div class="comments-attachments" style="font-style:bold">Memo</div>
       <div class="task-item-footer">
         <div class="comments-attachments">
-          <div class="comments">
-            <i class="far fa-comment-alt"></i> 1
-          </div>
-          <div class="attachment">
-            <i class="fa fa-paperclip"></i> 2
-          </div>
+
+       예약된 대상자->전화 스크리닝<br>
+        - 2022-02-09 18:00 김민걸 -
+       
         </div>
-        <div class="assigned-users">
-          <div class="user-avatar" v-for="(user, id) in item.assignedUsers" :key="id">
-            <img :src="user.imgURL" alt />
-          </div>
-          <div class="dropdown">
-            <div
-              class="add-icon"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >+</div>
-            <div class="dropdown-menu assignee-selection" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" @click="assignUser(user)" v-for="(user, id) in item.assignedUsers" :key="id">
-                <div class="user-avatar">
-                  <img :src="user.imgURL" alt />
-                </div>
-                <p class="user-name">{{user.name}}</p>
-              </a>
-            </div>
-          </div>
-        </div>
+      <!-- <div class="task-item-header"> -->
+        
+         
+       
+
+      <!-- </div> -->
       </div>
     </li>
   </div>
